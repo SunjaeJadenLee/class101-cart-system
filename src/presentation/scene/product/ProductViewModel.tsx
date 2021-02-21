@@ -1,5 +1,5 @@
 import Product from "../../../entity/Product";
-import ProductModel from "../../../model/ProductModel";
+import ProductModel from "../../../model/productModel/ProductModel"
 
 export default class ProductViewModel {
     productModel: ProductModel;

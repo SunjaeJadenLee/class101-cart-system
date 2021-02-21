@@ -1,5 +1,5 @@
 import ProductController from "../presentation/scene/product/controller/ProductController";
-import ProductModel from "../model/ProductModel";
+import ProductModel from "../model/productModel/ProductModel";
 import ProductViewModel from "../presentation/scene/product/ProductViewModel";
 import React from 'react'
 import { useState } from "react";
