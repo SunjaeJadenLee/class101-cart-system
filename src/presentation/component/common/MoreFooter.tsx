@@ -2,7 +2,8 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import React from 'react'
 
-const ListFooter = () => {
+const MoreFooter = () => {
+    
     return (
         <View style={styles.container}>
             <View style={styles.horizontalPadding}>
@@ -12,7 +13,7 @@ const ListFooter = () => {
     )
 }
 
-export default ListFooter
+export default MoreFooter
 
 const styles = StyleSheet.create({
     container: {

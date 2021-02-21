@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import ListFooter from '../common/ListFooter'
+import MoreFooter from '../common/MoreFooter'
 import Product from '../../../entity/Product'
 import ProductListItem from './ProductListItem'
 import React from 'react'
@@ -15,7 +15,7 @@ const ProductList = ({products}:ProductListPropType) => {
             numColumns={2}
             data={products}
             renderItem={ProductListItem}
-            ListFooterComponent={<ListFooter />}
+            ListFooterComponent={<MoreFooter />}
         />
     )
 }
