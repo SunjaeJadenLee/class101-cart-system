@@ -11,7 +11,7 @@ type ProductViewPropType = {
     viewModel: ProductViewModel;
     cartViewModel: CartViewModel;
     numOfCartItem: number;
-    handleAddToCartItem: (product: Product) => void
+    handleAddToCartItem: (product: Product) => void;
     
 }
 
