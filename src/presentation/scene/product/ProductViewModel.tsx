@@ -7,7 +7,7 @@ export default class ProductViewModel {
         this.productModel = productModel;
     }
 
-    getProducts = () => {
-        return this.productModel.getProducts();
+    getProducts = (page: number) => {
+        return this.productModel.getProducts(page);
     }
 }
