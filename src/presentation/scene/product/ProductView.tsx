@@ -1,4 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 
 import CartViewModel from '../cart/CartViewModel';
@@ -16,10 +17,17 @@ type ProductViewPropType = {
 }
 
 const ProductView = ({ viewModel, cartViewModel, numOfCartItem, handleAddToCartItem }: ProductViewPropType) => {
+    const navigation = useNavigation();
+
+    const handleNavigation = () => {
+        navigation.navigate('cartScene',{
+            cartViewModel
+        })
+    }
 
     return (
         <View style={styles.container}>
-            <SceneHeader title={'클래스'} isCartScene={false} numOfProduct={numOfCartItem}/>
+            <SceneHeader title={'클래스'} isCartScene={false} numOfProduct={numOfCartItem} handleNavigation={handleNavigation}/>
             <ProductList viewModel={viewModel} cartViewModel={cartViewModel} handleAddToCartItem={handleAddToCartItem}/>
         </View>
     )

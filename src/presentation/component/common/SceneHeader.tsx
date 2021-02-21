@@ -7,18 +7,10 @@ type SceneHeaderPropType = {
     title: string;
     isCartScene: boolean;
     numOfProduct: number;
+    handleNavigation: () => void;
 }
 
-const SceneHeader = ({ title, isCartScene, numOfProduct }:SceneHeaderPropType) => {
-    const navigation = useNavigation();
-
-    const handleNavigation = () => {
-        if(isCartScene){
-            navigation.goBack();
-        } else {
-            navigation.navigate('cartScene')
-        }
-    }
+const SceneHeader = ({ title, isCartScene, numOfProduct, handleNavigation }:SceneHeaderPropType) => {
 
     return (
         <View style={styles.container}>

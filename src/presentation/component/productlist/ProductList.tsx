@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
-import CartViewModel from '../../scene/ cart/CartViewModel'
+import CartViewModel from '../../scene/cart/CartViewModel'
 import MoreButton from '../common/MoreButton'
 import Product from '../../../entity/Product'
 import ProductListItem from './ProductListItem'
