@@ -19,6 +19,7 @@ const ProductListItem = ({item}:ProductListItemPropType) => {
             <Image style={styles.thumbnailImage} source={{ uri: item.coverImage }} />
             <View>
                 <Text>{item.title}</Text>
+                <Text>{item.score}</Text>
                 <Text>{getFormattedPrice(item.price ?? 0)}</Text>
             </View>
         </View>
