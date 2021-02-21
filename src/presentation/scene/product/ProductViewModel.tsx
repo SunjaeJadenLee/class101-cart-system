@@ -1,4 +1,4 @@
-import ProductModel from "../model/ProductModel";
+import ProductModel from "../../../model/ProductModel";
 
 export default class ProductViewModel {
     productModel: ProductModel;

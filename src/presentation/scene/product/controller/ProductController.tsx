@@ -1,11 +1,16 @@
-import ProductListView from "../view/ProductListVIew"
-import ProductViewModel from "../viewmodel/ProductViewModel"
+import ProductView from "../ProductView"
+import ProductViewModel from "../ProductViewModel"
+import React from "react"
 
-const ProductController = (productViewModel: ProductViewModel) => {
+type ProductControllerPropType = {
+    productViewModel: ProductViewModel;
+}
+
+const ProductController = ({productViewModel}:ProductControllerPropType) => {
     
 
     return(
-        <ProductView />
+        <ProductView products={productViewModel.getProducts()}/>
     )
 
 }

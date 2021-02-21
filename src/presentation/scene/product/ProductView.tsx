@@ -1,9 +1,12 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 
-import Product from '../model/Product';
-import ProductList from '../component/ProductList';
-import ProductViewPropType from './propTypes/ProductViewPropType';
+import Product from '../../../entity/Product';
+import ProductList from '../../component/productlist/ProductList';
 import React from 'react'
+
+type ProductViewPropType = {
+    products: Product[];
+}
 
 const ProductView = ({products}: ProductViewPropType) => {
     return (
