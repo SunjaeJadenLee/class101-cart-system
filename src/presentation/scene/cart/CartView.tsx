@@ -4,6 +4,7 @@ import CartList from '../../component/cartlist/CartList'
 import CartViewModel from './CartViewModel'
 import React from 'react'
 import SceneHeader from '../../component/common/SceneHeader'
+import TotalPriceView from '../../component/totalPriceView/TotalPriceView'
 import { useNavigation } from '@react-navigation/native'
 
 type CartViewPropType = {
@@ -21,6 +22,7 @@ const CartView = ({cartViewModel}: CartViewPropType) => {
         <View style={styles.container}>
             <SceneHeader title={'장바구니'} isCartScene={true} numOfProduct={cartViewModel.getNumOfProduct()} handleNavigation={handleNavigation}/>
             <CartList viewModel={cartViewModel}/>
+            <TotalPriceView viewModel={cartViewModel}/>
         </View>
     )
 }
