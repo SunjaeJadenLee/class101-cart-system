@@ -22,8 +22,9 @@ const ProductList = ({ viewModel, handleAddToCartItem }: ProductListPropType) =>
     }
 
     const toggleAddToCart = (product: Product) => {
-        handleAddToCartItem(product);
+        let toggleResult = handleAddToCartItem(product);
         setUpdated(isUpdated - 1);
+        return toggleResult
     }
 
     return (

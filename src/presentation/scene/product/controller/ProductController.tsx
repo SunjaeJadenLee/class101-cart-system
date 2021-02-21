@@ -15,8 +15,9 @@ const ProductController = ({ productViewModel, cartViewModel }: ProductControlle
     const [numOfCartItem,setNumOfcartItem] = useState(cartViewModel.getNumOfProduct());
 
     const handleAddToCartitem = (product: Product) => {
-        cartViewModel.addProduct(product);
+        let addResult = cartViewModel.addProduct(product);
         setNumOfcartItem(cartViewModel.getNumOfProduct());
+        return addResult
     }
 
     return (

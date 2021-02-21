@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
 import { Formatter } from '../../util/formatter'
@@ -6,7 +6,7 @@ import Product from '../../../entity/Product'
 
 type ProductListItemPropType = {
     item: Product;
-    toggleAddToCart: (product:Product) => void;
+    toggleAddToCart: (product:Product) => boolean;
 }
 
 const ProductListItem = ({item,toggleAddToCart}:ProductListItemPropType) => {
@@ -17,8 +17,12 @@ const ProductListItem = ({item,toggleAddToCart}:ProductListItemPropType) => {
     }
 
     const handleAddToCart = () => {
-        setIsInCart(!isInCart);
-        toggleAddToCart(item)
+        let toggleResult = toggleAddToCart(item)
+        if(toggleResult !== false){
+            setIsInCart(!isInCart);
+        } else {
+            Alert.alert('','최대 3개만 선택할 수 있습니다.')
+        }
     }
 
     return (
