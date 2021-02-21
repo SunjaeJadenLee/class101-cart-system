@@ -14,11 +14,11 @@ const SceneHeader = ({ title, isCartScene, numOfProduct, handleNavigation }:Scen
 
     return (
         <View style={styles.container}>
-            {isCartScene&&<TouchableOpacity onPress={handleNavigation} style={styles.goBackContainer}>
+            {isCartScene && <TouchableOpacity onPress={handleNavigation} style={styles.goBackContainer}>
                 <Text>goBack</Text>
             </TouchableOpacity>}
-            <Text>{title}</Text>
-            {!isCartScene&&<TouchableOpacity onPress={handleNavigation} style={styles.noOfProductContainer}>
+            <Text>{title} {isCartScene && `(${numOfProduct})`}</Text>
+            {!isCartScene && <TouchableOpacity onPress={handleNavigation} style={styles.noOfProductContainer}>
                 <Text style={styles.noOfProductText}>{numOfProduct}</Text>
             </TouchableOpacity>}
         </View>
@@ -29,14 +29,14 @@ export default SceneHeader
 
 const styles = StyleSheet.create({
     container: {
-        position:'relative',
+        position: 'relative',
         height: 60,
-        justifyContent:'center',
+        justifyContent: 'center',
         alignItems: 'center',
     },
     noOfProductContainer: {
         position: 'absolute',
-        right:20,
+        right: 20,
     },
     noOfProductText: {
 
