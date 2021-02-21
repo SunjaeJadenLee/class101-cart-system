@@ -14,6 +14,7 @@ export default class CartViewModel {
         } else {
             if(this.checkOverLimit()){
                 product.amount = 1;
+                product.isActive = true;
                 this.products.push(product);
                 return true;
             } else {
@@ -33,7 +34,9 @@ export default class CartViewModel {
     getTotalPrice = () => {
         let totalPrice = 0;
         this.products.map((cartItem: CartItem) => {
-            totalPrice = totalPrice + (cartItem.amount ?? 1) * (cartItem.price ?? 0)
+            if(cartItem.isActive){
+                totalPrice = totalPrice + (cartItem.amount ?? 1) * (cartItem.price ?? 0)
+            }
         })
         return totalPrice
     }

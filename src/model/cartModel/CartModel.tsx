@@ -7,6 +7,7 @@ export default class CartModel implements ICartModel {
     
     addProduct = (product: CartItem) => {
         product.amount = 1;
+        product.isActive = true;
         this.products.push(product);
     };
 

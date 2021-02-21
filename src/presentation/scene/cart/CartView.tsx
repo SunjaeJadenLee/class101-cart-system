@@ -32,10 +32,15 @@ const CartView = ({cartViewModel}: CartViewPropType) => {
         }
     }
 
+    const handleActiveCartItem = (cartItem: CartItem,isActive: boolean) => {
+        cartItem.isActive = !isActive;
+        setUpdate(isUpdate - 1);
+    }
+
     return (
         <View style={styles.container}>
             <SceneHeader title={'장바구니'} isCartScene={true} numOfProduct={cartViewModel.getNumOfProduct()} handleNavigation={handleNavigation}/>
-            <CartList viewModel={cartViewModel} handlePlusCartItem={handlePlusCartItem} handleMinusCartItem={handleMinusCartItem}/>
+            <CartList viewModel={cartViewModel} handlePlusCartItem={handlePlusCartItem} handleMinusCartItem={handleMinusCartItem} handleActiveCartItem={handleActiveCartItem}/>
             <TotalPriceView viewModel={cartViewModel}/>
         </View>
     )

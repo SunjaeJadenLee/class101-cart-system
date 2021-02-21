@@ -8,10 +8,17 @@ type CartListItemPropType = {
     item: CartItem;
     handlePlusCartItem: (cartItem: CartItem) => void;
     handleMinusCartItem: (cartItem: CartItem) => void;
+    handleActiveCartItem: (cartItem: CartItem, isActive: boolean) => void;
 
 }
 
-const CartListItem = ({ item, handlePlusCartItem, handleMinusCartItem }: CartListItemPropType) => {
+const CartListItem = ({ item, handlePlusCartItem, handleMinusCartItem, handleActiveCartItem }: CartListItemPropType) => {
+    const [isChecked,setChecked] = useState(true);
+
+    const handleClickCheckbox = () => {
+        handleActiveCartItem(item,isChecked);
+        setChecked(!isChecked);
+    }
 
     return (
         <View style={styles.container}>
@@ -24,6 +31,9 @@ const CartListItem = ({ item, handlePlusCartItem, handleMinusCartItem }: CartLis
             <Text>{item.amount}</Text>
             <TouchableOpacity onPress={()=>handlePlusCartItem(item)} style={styles.amountButton}>
                 <Text>+</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleClickCheckbox} style={[styles.checkbox,isChecked?{backgroundColor:'#000'}:{backgroundColor:'#ccc'}]}>
+
             </TouchableOpacity>
             </View>
         </View>
@@ -52,5 +62,9 @@ const styles = StyleSheet.create({
         height: 20,
         justifyContent:'center',
         alignItems:'center'
+    },
+    checkbox: {
+        width:30,
+        height:30
     }
 })

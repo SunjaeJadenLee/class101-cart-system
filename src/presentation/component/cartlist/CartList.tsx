@@ -8,15 +8,20 @@ import CartViewModel from '../../scene/cart/CartViewModel'
 type CartListPropType = {
     viewModel: CartViewModel;
     handlePlusCartItem: (cartItem: CartItem) => void;
-    handleMinusCartItem: (CartItem: CartItem) => void;
+    handleMinusCartItem: (cartItem: CartItem) => void;
+    handleActiveCartItem: (cartItem: CartItem, isActive: boolean) => void;
 }
 
-const CartList = ({viewModel,handlePlusCartItem,handleMinusCartItem}:CartListPropType) => {
+const CartList = ({viewModel,handlePlusCartItem,handleMinusCartItem,handleActiveCartItem}:CartListPropType) => {
 
     return (
         <FlatList 
             data={viewModel.products}
-            renderItem={({item})=><CartListItem item={item} handlePlusCartItem={handlePlusCartItem} handleMinusCartItem={handleMinusCartItem}/>}
+            renderItem={({item})=><CartListItem item={item} 
+            handlePlusCartItem={handlePlusCartItem} 
+            handleMinusCartItem={handleMinusCartItem} 
+            handleActiveCartItem={handleActiveCartItem}
+            />}
         />
     )
 }
