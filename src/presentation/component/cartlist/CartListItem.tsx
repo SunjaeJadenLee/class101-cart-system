@@ -1,18 +1,19 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 
-import Product from '../../../entity/Product'
+import CartItem from '../../../entity/CartItem'
 import React from 'react'
 
 type CartListItemPropType = {
-    item: Product;
+    item: CartItem;
 
 }
 
-const CartListItem = ({item}: CartListItemPropType) => {
+const CartListItem = ({ item }: CartListItemPropType) => {
     return (
         <View style={styles.container}>
-            <Image source={{uri:item.coverImage}} style={styles.thumbnailImage}/>
+            <Image source={{ uri: item.coverImage }} style={styles.thumbnailImage} />
             <Text style={styles.titleText}>{item.title}</Text>
+            <Text>{item.amount}</Text>
         </View>
     )
 }

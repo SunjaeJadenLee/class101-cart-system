@@ -10,7 +10,7 @@ import ProductViewModel from '../../scene/product/ProductViewModel'
 type ProductListPropType = {
     viewModel: ProductViewModel;
     cartViewModel: CartViewModel;
-    handleAddToCartItem: (product: Product) => void;
+    handleAddToCartItem: (product: Product) => boolean;
 } 
 
 const ProductList = ({ viewModel, handleAddToCartItem }: ProductListPropType) => {
