@@ -1,21 +1,30 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 
-import ListFooter from '../common/ListFooter'
+import MoreButton from '../common/MoreButton'
 import Product from '../../../entity/Product'
 import ProductListItem from './ProductListItem'
-import React from 'react'
+import ProductViewModel from '../../scene/product/ProductViewModel'
 
 type ProductListPropType = {
-    products: Product[];
+    viewModel: ProductViewModel;
+    handleGetProduct: ()=>void;
 } 
 
-const ProductList = ({products}:ProductListPropType) => {
+const ProductList = ({viewModel,handleGetProduct}:ProductListPropType) => {
+    const [isUpdated,setUpdated] = useState(0);
+
+    const handleClickMoreButton = () => {
+        handleGetProduct();
+        setUpdated(isUpdated+1);
+    }
+
     return (
         <FlatList 
             numColumns={2}
-            data={products}
+            data={viewModel.products}
             renderItem={ProductListItem}
-            ListFooterComponent={<ListFooter />}
+            ListFooterComponent={viewModel.isLastPage?null:<MoreButton handleClickMoreButton={handleClickMoreButton}/>}
         />
     )
 }

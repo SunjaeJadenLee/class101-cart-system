@@ -1,16 +1,21 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
 
 import Product from '../../../entity/Product';
 import ProductList from '../../component/productlist/ProductList';
-import React from 'react'
+import ProductViewModel from './ProductViewModel';
 
 type ProductViewPropType = {
-    products: Product[];
+    viewModel: ProductViewModel;
+    handleGetProduct: () => void
 }
 
-const ProductView = ({products}: ProductViewPropType) => {
+const ProductView = ({viewModel,handleGetProduct}: ProductViewPropType) => {
+
     return (
-        <ProductList products={products}/>
+        <View>
+            <ProductList viewModel={viewModel} handleGetProduct={handleGetProduct}/>
+        </View>
     )
 }
 
