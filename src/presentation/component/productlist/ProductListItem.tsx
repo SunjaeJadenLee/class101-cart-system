@@ -1,12 +1,13 @@
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 
+import CartItem from '../../../entity/CartItem'
 import { Formatter } from '../../util/formatter'
 import Product from '../../../entity/Product'
 
 type ProductListItemPropType = {
     item: Product;
-    toggleAddToCart: (product:Product) => boolean;
+    toggleAddToCart: (product:CartItem) => boolean;
 }
 
 const ProductListItem = ({item,toggleAddToCart}:ProductListItemPropType) => {
@@ -17,7 +18,7 @@ const ProductListItem = ({item,toggleAddToCart}:ProductListItemPropType) => {
     }
 
     const handleAddToCart = () => {
-        let toggleResult = toggleAddToCart(item)
+        let toggleResult = toggleAddToCart(item as CartItem)
         if(toggleResult !== false){
             setIsInCart(!isInCart);
         } else {

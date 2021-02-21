@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
+import CartItem from '../../../entity/CartItem'
 import CartViewModel from '../../scene/cart/CartViewModel'
 import MoreButton from '../common/MoreButton'
 import Product from '../../../entity/Product'
@@ -10,7 +11,7 @@ import ProductViewModel from '../../scene/product/ProductViewModel'
 type ProductListPropType = {
     viewModel: ProductViewModel;
     cartViewModel: CartViewModel;
-    handleAddToCartItem: (product: Product) => boolean;
+    handleAddToCartItem: (product: CartItem) => boolean;
 } 
 
 const ProductList = ({ viewModel, handleAddToCartItem }: ProductListPropType) => {
@@ -21,7 +22,7 @@ const ProductList = ({ viewModel, handleAddToCartItem }: ProductListPropType) =>
         setUpdated(isUpdated + 1);
     }
 
-    const toggleAddToCart = (product: Product) => {
+    const toggleAddToCart = (product: CartItem) => {
         let toggleResult = handleAddToCartItem(product);
         setUpdated(isUpdated - 1);
         return toggleResult

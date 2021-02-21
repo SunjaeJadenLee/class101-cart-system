@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View } from 'react-native'
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react'
 
+import CartItem from '../../../entity/CartItem';
 import CartViewModel from '../cart/CartViewModel';
 import Product from '../../../entity/Product';
 import ProductList from '../../component/productlist/ProductList';
@@ -12,7 +13,7 @@ type ProductViewPropType = {
     viewModel: ProductViewModel;
     cartViewModel: CartViewModel;
     numOfCartItem: number;
-    handleAddToCartItem: (product: Product) => boolean;
+    handleAddToCartItem: (product: CartItem) => boolean;
     
 }
 

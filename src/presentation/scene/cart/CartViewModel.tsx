@@ -33,7 +33,7 @@ export default class CartViewModel {
     getTotalPrice = () => {
         let totalPrice = 0;
         this.products.map((cartItem: CartItem) => {
-            totalPrice = (cartItem.amount ?? 1) * (cartItem.price ?? 0)
+            totalPrice = totalPrice + (cartItem.amount ?? 1) * (cartItem.price ?? 0)
         })
         return totalPrice
     }
