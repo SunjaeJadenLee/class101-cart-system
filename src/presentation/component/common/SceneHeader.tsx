@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 type SceneHeaderPropType = {
     title: string;
@@ -8,13 +9,26 @@ type SceneHeaderPropType = {
     numOfProduct: number;
 }
 
-const SceneHeader = ({ title, isCartScene,numOfProduct }:SceneHeaderPropType) => {
+const SceneHeader = ({ title, isCartScene, numOfProduct }:SceneHeaderPropType) => {
+    const navigation = useNavigation();
+
+    const handleNavigation = () => {
+        if(isCartScene){
+            navigation.goBack();
+        } else {
+            navigation.navigate('cartScene')
+        }
+    }
+
     return (
         <View style={styles.container}>
+            {isCartScene&&<TouchableOpacity onPress={handleNavigation} style={styles.goBackContainer}>
+                <Text>goBack</Text>
+            </TouchableOpacity>}
             <Text>{title}</Text>
-            {!isCartScene&&<View style={styles.noOfProductContainer}>
+            {!isCartScene&&<TouchableOpacity onPress={handleNavigation} style={styles.noOfProductContainer}>
                 <Text style={styles.noOfProductText}>{numOfProduct}</Text>
-            </View>}
+            </TouchableOpacity>}
         </View>
     )
 }
@@ -34,5 +48,9 @@ const styles = StyleSheet.create({
     },
     noOfProductText: {
 
+    },
+    goBackContainer: {
+        position: 'absolute',
+        left: 20
     }
 })
