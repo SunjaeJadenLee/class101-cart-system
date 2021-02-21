@@ -26,8 +26,10 @@ const CartView = ({cartViewModel}: CartViewPropType) => {
     }
 
     const handleMinusCartItem = (cartItem: CartItem) => {
-        cartItem.amount = (cartItem.amount ?? 0) - 1;
-        setUpdate(isUpdate + 1);
+        if(cartItem.amount !== 1) {
+            cartItem.amount = (cartItem.amount ?? 0) - 1;
+            setUpdate(isUpdate + 1);
+        }
     }
 
     return (
