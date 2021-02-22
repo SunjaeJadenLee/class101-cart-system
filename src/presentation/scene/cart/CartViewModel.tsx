@@ -1,10 +1,11 @@
 import CartItem from "../../../entity/CartItem";
 import CartModel from "../../../model/cartModel/CartModel";
-import Product from "../../../entity/Product";
+import Coupon from "../../../entity/Coupon";
 
 export default class CartViewModel {
     products: CartItem[] = [];
     readonly limit: number = 3;
+    coupons: Coupon[] = [];
 
     addProduct = (product: CartItem) => {
         const isAdded = this.products.filter((prod:CartItem) => product.id !== prod.id);
