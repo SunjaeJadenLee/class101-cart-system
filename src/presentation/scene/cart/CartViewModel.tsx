@@ -41,4 +41,13 @@ export default class CartViewModel {
         })
         return totalPrice
     }
+
+    toggleCoupon = (coupon: Coupon) => {
+        const isAdded = this.coupons.filter((coup: Coupon)=>coup.title == coupon.type);
+        if(isAdded.length !== this.coupons.length){
+            this.coupons = isAdded
+        } else {
+            this.coupons.push(coupon);
+        }
+    }
 }

@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import CartItem from '../../../entity/CartItem'
 import CartList from '../../component/cartlist/CartList'
 import CartViewModel from './CartViewModel'
+import Coupon from '../../../entity/Coupon'
 import CouponView from '../coupon/CouponView'
 import CouponViewModel from '../coupon/CouponViewModel'
 import SceneHeader from '../../component/common/SceneHeader'
@@ -40,11 +41,16 @@ const CartView = ({cartViewModel, couponViewModel}: CartViewPropType) => {
         setUpdate(isUpdate - 1);
     }
 
+    const handleToggleCoupon = (coupon: Coupon) => {
+        cartViewModel.toggleCoupon(coupon);
+        setUpdate(isUpdate - 1);
+    }
+
     return (
         <View style={styles.container}>
             <SceneHeader title={'장바구니'} isCartScene={true} numOfProduct={cartViewModel.getNumOfProduct()} handleNavigation={handleNavigation}/>
             <CartList viewModel={cartViewModel} handlePlusCartItem={handlePlusCartItem} handleMinusCartItem={handleMinusCartItem} handleActiveCartItem={handleActiveCartItem}/>
-            <CouponView couponViewModel={couponViewModel}/>
+            <CouponView couponViewModel={couponViewModel} handleToggleCoupon={handleToggleCoupon}/>
             <TotalPriceView viewModel={cartViewModel}/>
         </View>
     )
