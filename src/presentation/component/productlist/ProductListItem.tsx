@@ -1,17 +1,29 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 
+import CartItem from '../../../entity/CartItem'
 import { Formatter } from '../../util/formatter'
 import Product from '../../../entity/Product'
-import React from 'react'
 
 type ProductListItemPropType = {
     item: Product;
+    toggleAddToCart: (product:CartItem) => boolean;
 }
 
-const ProductListItem = ({item}:ProductListItemPropType) => {
+const ProductListItem = ({item,toggleAddToCart}:ProductListItemPropType) => {
+    const [isInCart,setIsInCart] = useState(false);
 
     const getFormattedPrice = (price: number) => {
         return Formatter.decimal(price);
+    }
+
+    const handleAddToCart = () => {
+        let toggleResult = toggleAddToCart(item as CartItem)
+        if(toggleResult !== false){
+            setIsInCart(!isInCart);
+        } else {
+            Alert.alert('','최대 3개만 선택할 수 있습니다.')
+        }
     }
 
     return (
@@ -22,6 +34,9 @@ const ProductListItem = ({item}:ProductListItemPropType) => {
                 <Text>{item.score}</Text>
                 <Text>{getFormattedPrice(item.price ?? 0)}</Text>
             </View>
+            <TouchableOpacity onPress={handleAddToCart}>
+                <Text>{isInCart?'added':'cart'}</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -31,7 +46,7 @@ export default ProductListItem
 const styles = StyleSheet.create({
     container: {
         width: '50%',
-        height: 200
+        height: 200,
     },
     thumbnailImage: {
         width: '100%',

@@ -1,7 +1,8 @@
+import CartItem from "../../entity/CartItem";
 import Product from "../../entity/Product";
 
 export default interface ICartModel {
-    products: Product[];
+    products: CartItem[];
 
-    addProduct: (product: Product) => void;
+    addProduct: (product: CartItem) => void;
 }

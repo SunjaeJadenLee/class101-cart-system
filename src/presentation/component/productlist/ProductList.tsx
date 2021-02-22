@@ -1,6 +1,8 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
+import CartItem from '../../../entity/CartItem'
+import CartViewModel from '../../scene/cart/CartViewModel'
 import MoreButton from '../common/MoreButton'
 import Product from '../../../entity/Product'
 import ProductListItem from './ProductListItem'
@@ -8,24 +10,33 @@ import ProductViewModel from '../../scene/product/ProductViewModel'
 
 type ProductListPropType = {
     viewModel: ProductViewModel;
-    handleGetProduct: ()=>void;
+    cartViewModel: CartViewModel;
+    handleAddToCartItem: (product: CartItem) => boolean;
 } 
 
-const ProductList = ({viewModel,handleGetProduct}:ProductListPropType) => {
-    const [isUpdated,setUpdated] = useState(0);
+const ProductList = ({ viewModel, handleAddToCartItem }: ProductListPropType) => {
+    const [isUpdated, setUpdated] = useState(0);
 
     const handleClickMoreButton = () => {
-        handleGetProduct();
-        setUpdated(isUpdated+1);
+        viewModel.getProducts();
+        setUpdated(isUpdated + 1);
+    }
+
+    const toggleAddToCart = (product: CartItem) => {
+        let toggleResult = handleAddToCartItem(product);
+        setUpdated(isUpdated - 1);
+        return toggleResult
     }
 
     return (
-        <FlatList 
-            numColumns={2}
-            data={viewModel.products}
-            renderItem={ProductListItem}
-            ListFooterComponent={viewModel.isLastPage?null:<MoreButton handleClickMoreButton={handleClickMoreButton}/>}
-        />
+        <View style={{flex:1}}>
+            <FlatList
+                numColumns={2}
+                data={viewModel.products}
+                renderItem={({item})=><ProductListItem item={item} toggleAddToCart={toggleAddToCart}/>}
+                ListFooterComponent={viewModel.isLastPage ? null : <MoreButton handleClickMoreButton={handleClickMoreButton} />}
+            />
+        </View>
     )
 }
 
