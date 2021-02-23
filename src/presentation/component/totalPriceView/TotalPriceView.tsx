@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 
 import CartViewModel from '../../scene/cart/CartViewModel'
+import { Formatter } from '../../util/formatter'
 import React from 'react'
 
 type TotalPriceViewPropType = {
@@ -8,9 +9,16 @@ type TotalPriceViewPropType = {
 }
 
 const TotalPriceView = ({viewModel}:TotalPriceViewPropType) => {
+
+    const handleFormattedTotalPrice = (price: number) => {
+        return Formatter.decimal(price);
+    }
+    
     return (
         <View style={styles.container}>
-            <Text>{viewModel.getTotalPrice()}</Text>
+            <Text>{handleFormattedTotalPrice(viewModel.getTotalPrice())}</Text>
+            <Text>{handleFormattedTotalPrice(viewModel.getDiscountAmount())}</Text>
+            <Text>{handleFormattedTotalPrice(viewModel.getDiscountedTotalPrice())}</Text>
         </View>
     )
 }

@@ -4,19 +4,24 @@ import { StyleSheet, Text, View } from 'react-native'
 import CartItem from '../../../entity/CartItem'
 import CartList from '../../component/cartlist/CartList'
 import CartViewModel from './CartViewModel'
+import Coupon from '../../../entity/Coupon'
+import CouponView from '../coupon/CouponView'
+import CouponViewModel from '../coupon/CouponViewModel'
 import SceneHeader from '../../component/common/SceneHeader'
 import TotalPriceView from '../../component/totalPriceView/TotalPriceView'
 import { useNavigation } from '@react-navigation/native'
 
 type CartViewPropType = {
-    cartViewModel: CartViewModel
+    cartViewModel: CartViewModel;
+    couponViewModel: CouponViewModel;
 }
 
-const CartView = ({cartViewModel}: CartViewPropType) => {
+const CartView = ({cartViewModel, couponViewModel}: CartViewPropType) => {
     const [isUpdate,setUpdate] = useState(0);
     const navigation = useNavigation();
 
     const handleNavigation = () => {
+        cartViewModel.coupon = undefined;
         navigation.goBack();
     }
 
@@ -37,10 +42,16 @@ const CartView = ({cartViewModel}: CartViewPropType) => {
         setUpdate(isUpdate - 1);
     }
 
+    const handleToggleCoupon = (coupon: Coupon) => {
+        cartViewModel.toggleCoupon(coupon);
+        setUpdate(isUpdate - 1);
+    }
+
     return (
         <View style={styles.container}>
             <SceneHeader title={'장바구니'} isCartScene={true} numOfProduct={cartViewModel.getNumOfProduct()} handleNavigation={handleNavigation}/>
             <CartList viewModel={cartViewModel} handlePlusCartItem={handlePlusCartItem} handleMinusCartItem={handleMinusCartItem} handleActiveCartItem={handleActiveCartItem}/>
+            <CouponView couponViewModel={couponViewModel} cartViewModel={cartViewModel} handleToggleCoupon={handleToggleCoupon}/>
             <TotalPriceView viewModel={cartViewModel}/>
         </View>
     )
