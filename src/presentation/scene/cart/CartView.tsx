@@ -22,6 +22,7 @@ const CartView = ({cartViewModel, couponViewModel}: CartViewPropType) => {
 
     const handleNavigation = () => {
         cartViewModel.coupon = undefined;
+        cartViewModel.discountAmount = 0;
         navigation.goBack();
     }
 
