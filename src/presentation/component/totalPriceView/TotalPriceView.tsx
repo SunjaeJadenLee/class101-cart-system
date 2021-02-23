@@ -10,13 +10,15 @@ type TotalPriceViewPropType = {
 
 const TotalPriceView = ({viewModel}:TotalPriceViewPropType) => {
 
-    const handleFormattedTotalPrice = () => {
-        return Formatter.decimal(viewModel.getTotalPrice());
+    const handleFormattedTotalPrice = (price: number) => {
+        return Formatter.decimal(price);
     }
     
     return (
         <View style={styles.container}>
-            <Text>{handleFormattedTotalPrice()}</Text>
+            <Text>{handleFormattedTotalPrice(viewModel.getTotalPrice())}</Text>
+            <Text>{handleFormattedTotalPrice(viewModel.getDiscountAmount())}</Text>
+            <Text>{handleFormattedTotalPrice(viewModel.getDiscountedTotalPrice())}</Text>
         </View>
     )
 }

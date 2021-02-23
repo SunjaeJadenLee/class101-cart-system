@@ -1,5 +1,5 @@
 import { Alert, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import CartItem from '../../../entity/CartItem'
 import { Formatter } from '../../util/formatter'
@@ -33,6 +33,7 @@ const ProductListItem = ({item,toggleAddToCart}:ProductListItemPropType) => {
                 <Text>{item.title}</Text>
                 <Text>{item.score}</Text>
                 <Text>{getFormattedPrice(item.price ?? 0)}</Text>
+                {item.availableCoupon === false && <Text>쿠폰 x</Text>}
             </View>
             <TouchableOpacity onPress={handleAddToCart}>
                 <Text>{isInCart?'added':'cart'}</Text>

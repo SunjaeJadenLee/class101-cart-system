@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
+import CartViewModel from '../../scene/cart/CartViewModel'
 import Coupon from '../../../entity/Coupon'
 
 type CouponListItemPropType = {
     item: Coupon;
+    cartViewModel: CartViewModel
     handleToggleCoupon: (coupon: Coupon) => void;
 }
 
-const CouponListItem = ({item, handleToggleCoupon}: CouponListItemPropType) => {
-    const [isChecked,setChecked] = useState(false);
-
+const CouponListItem = ({item, cartViewModel, handleToggleCoupon}: CouponListItemPropType) => {
     const handlePresentDiscount = () => {
         if(item.type == 'rate'){
             return item.discountRate
@@ -21,16 +21,19 @@ const CouponListItem = ({item, handleToggleCoupon}: CouponListItemPropType) => {
         }
     }
 
+    const checkCoupon = (coupon: Coupon) => {
+        return cartViewModel.coupon?.title == coupon.title && cartViewModel.coupon?.type == coupon.type
+    }
+
     const handleClickCheckbox = () => {
         handleToggleCoupon(item);
-        setChecked(!isChecked);
     }
 
     return (
         <View style={styles.container}>
             <Text>{item.title}</Text>
             <Text>{handlePresentDiscount()}</Text>
-            <TouchableOpacity onPress={handleClickCheckbox} style={{...styles.checkbox,backgroundColor:isChecked?'#000':'#ccc'}}>
+            <TouchableOpacity onPress={handleClickCheckbox} style={{...styles.checkbox,backgroundColor:checkCoupon(item)?'#000':'#ccc'}}>
                 
             </TouchableOpacity>
         </View>

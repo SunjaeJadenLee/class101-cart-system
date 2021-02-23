@@ -21,6 +21,7 @@ const CartView = ({cartViewModel, couponViewModel}: CartViewPropType) => {
     const navigation = useNavigation();
 
     const handleNavigation = () => {
+        cartViewModel.coupon = undefined;
         navigation.goBack();
     }
 
@@ -50,7 +51,7 @@ const CartView = ({cartViewModel, couponViewModel}: CartViewPropType) => {
         <View style={styles.container}>
             <SceneHeader title={'장바구니'} isCartScene={true} numOfProduct={cartViewModel.getNumOfProduct()} handleNavigation={handleNavigation}/>
             <CartList viewModel={cartViewModel} handlePlusCartItem={handlePlusCartItem} handleMinusCartItem={handleMinusCartItem} handleActiveCartItem={handleActiveCartItem}/>
-            <CouponView couponViewModel={couponViewModel} handleToggleCoupon={handleToggleCoupon}/>
+            <CouponView couponViewModel={couponViewModel} cartViewModel={cartViewModel} handleToggleCoupon={handleToggleCoupon}/>
             <TotalPriceView viewModel={cartViewModel}/>
         </View>
     )
