@@ -23,8 +23,11 @@ const SceneHeader = ({ title, isCartScene, numOfProduct, handleNavigation }:Scen
                 <Icons size={20} color={'rgb(115,115,115)'} name={'angle-left'}/>
             </TouchableOpacity>}
             <Text style={styles.headerText}>{title} {isCartScene && `(${numOfProduct})`}</Text>
-            {!isCartScene && <TouchableOpacity onPress={handleNavigation} style={[styles.noOfProductContainer,handleDifferIconStyle(numOfProduct)]}>
-                <Text style={[styles.noOfProductText,handleDifferIconStyle(numOfProduct)]}>{numOfProduct}</Text>
+            {!isCartScene && <TouchableOpacity onPress={handleNavigation} style={styles.noOfProductContainer}>
+                <View  style={[styles.noOfProductNumBox, handleDifferIconStyle(numOfProduct)]}>
+                    <Text style={[styles.noOfProductText, handleDifferIconStyle(numOfProduct)]}>{numOfProduct}</Text>
+                </View>
+                <Icons name={'shopping-cart'} size={20} color={'rgb(240,140,73)'}/>
             </TouchableOpacity>}
         </View>
     )
@@ -34,19 +37,24 @@ export default SceneHeader
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor:'rgb(255,255,255)',
         position: 'relative',
         height: 60,
         justifyContent: 'center',
         alignItems: 'center',
     },
-    noOfProductContainer: {
+    noOfProductContainer:{
         position: 'absolute',
         right: 20,
+        flexDirection:'row'
+    },
+    noOfProductNumBox: {
         width: 25,
         height: 25,
         borderRadius: 12.5,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft:5
     },
     headerText: {
         fontSize: 16,

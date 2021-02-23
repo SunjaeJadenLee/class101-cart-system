@@ -11,7 +11,7 @@ const MoreButton = ({handleClickMoreButton}:MoreButtonType) => {
     return (
             <TouchableOpacity onPress={handleClickMoreButton} style={styles.container}>
                 <View style={styles.horizontalPadding}>
-                    <Text>더 불러오기</Text>
+                    <Text style={styles.moreItemText}>더 불러오기</Text>
                 </View>
             </TouchableOpacity>
     )
@@ -33,5 +33,10 @@ const styles = StyleSheet.create({
         width: '80%',
         justifyContent:'center',
         alignItems:'center'
+    },
+    moreItemText: {
+        fontSize: 16,
+        fontWeight: '700',
+        color: 'rgb(115,115,115)'
     }
 })
