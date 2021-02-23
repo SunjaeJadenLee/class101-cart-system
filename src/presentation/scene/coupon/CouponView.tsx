@@ -28,17 +28,23 @@ export default CouponView
 
 const styles = StyleSheet.create({
     container: {
-        
+        width:'100%',
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'rgb(235,235,235)'
     }, 
     couponViewHeader: {
         justifyContent:'center',
         alignItems:'center',
-        paddingVertical: 10
+        paddingVertical: 10,
+        borderBottomColor: 'rgb(115,115,115)',
+        // borderBottomWidth: .5,
+        width: 100
     },
     couponViewHeaderText: {
         fontSize: 14,
         fontWeight: '700',
-        color: 'rgb(240,140,73)'
+        color: 'rgb(240,140,73)',
     }
 
 })
